@@ -54,6 +54,15 @@
         End Try
     End Sub
 
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        For i = pnlActions.Controls.Count - 1 To 0 Step -1
+            Dim currentControl As ActionItem = pnlActions.Controls(i)
+            If currentControl.Selected Then
+                pnlActions.Controls.Remove(currentControl)
+            End If
+        Next
+    End Sub
+
     Private Sub cmbCharacter_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbCharacter.SelectedValueChanged
         Try
             Dim character As Character = GetCharacterFromName(cmbCharacter.Text)
