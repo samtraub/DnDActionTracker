@@ -32,17 +32,7 @@
             End Select
 
             Dim newAction As New Action(name, description, actionType)
-            Dim newActionItem As New ActionItem(newAction) With {
-                .Dock = DockStyle.Top,
-                .Width = pnlActions.Width - 24
-            }
-
-            Select Case actionType
-                Case Action.ActionType.Action
-                    pnlActions.Controls.Add(newActionItem)
-                Case Else
-
-            End Select
+            AddAction(newAction)
         End If
     End Sub
 
@@ -63,5 +53,32 @@
             MessageBox.Show(ex.ToString)
         End Try
     End Sub
+
+    Private Sub cmbCharacter_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbCharacter.SelectedValueChanged
+        Try
+            Dim character As Character = GetCharacterFromName(cmbCharacter.Text)
+
+            pnlActions.Controls.Clear()
+            For Each action As Action In character.Actions
+                AddAction(action)
+            Next
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
 #End Region
+
+    Private Sub AddAction(ByVal newAction As Action)
+        Dim newActionItem As New ActionItem(newAction) With {
+                .Dock = DockStyle.Top,
+                .Width = pnlActions.Width - 24
+            }
+
+        Select Case newAction.Type
+            Case Action.ActionType.Action
+                pnlActions.Controls.Add(newActionItem)
+            Case Else
+
+        End Select
+    End Sub
 End Class

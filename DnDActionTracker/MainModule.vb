@@ -24,4 +24,13 @@ Module MainModule
             sw.WriteLine(output)
         End Using
     End Sub
+
+    Public Function GetCharacterFromName(ByVal name As String) As Character
+        Dim filePath As String = Path.Combine(CharacterPath, name & ".json")
+        Dim character As Character
+        Using sr As New StreamReader(filePath)
+            character = JsonConvert.DeserializeObject(Of Character)(sr.ReadLine)
+        End Using
+        Return character
+    End Function
 End Module
