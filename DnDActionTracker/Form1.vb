@@ -47,17 +47,21 @@
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        Dim charName As String = cmbCharacter.Text
-        If Not charName.Equals("") Then
-            Dim actionList As New List(Of Action)
-            For Each control As ActionItem In pnlActions.Controls
-                actionList.Add(control.ActionData)
-            Next
+        Try
+            Dim charName As String = cmbCharacter.Text
+            If Not charName.Equals("") Then
+                Dim actionList As New List(Of Action)
+                For Each control As ActionItem In pnlActions.Controls
+                    actionList.Add(control.ActionData)
+                Next
 
-            SaveCharacter(charName, actionList)
-        Else
-            MessageBox.Show("Unable to save character with no name.")
-        End If
+                SaveCharacter(charName, actionList)
+            Else
+                MessageBox.Show("Unable to save character with no name.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
     End Sub
 #End Region
 End Class
