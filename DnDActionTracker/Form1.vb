@@ -59,6 +59,7 @@
             Dim currentControl As ActionItem = pnlActions.Controls(i)
             If currentControl.Selected Then
                 pnlActions.Controls.Remove(currentControl)
+                System.GC.Collect()
             End If
         Next
     End Sub
