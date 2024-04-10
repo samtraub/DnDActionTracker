@@ -6,13 +6,9 @@
         cmbCharacter.Items.AddRange(GetCharacterList)
     End Sub
 
-
-
 #Region "Control Events"
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        pnlActions.Controls.Clear()
-
-        System.GC.Collect()
+        ClearActions()
     End Sub
 
     Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAddItem.Click
@@ -49,6 +45,15 @@
                 For Each control As ActionItem In pnlActions.Controls
                     actionList.Add(control.ActionData)
                 Next
+                For Each control As ActionItem In pnlBonus.Controls
+                    actionList.Add(control.ActionData)
+                Next
+                For Each control As ActionItem In pnlReactions.Controls
+                    actionList.Add(control.ActionData)
+                Next
+                For Each control As ActionItem In pnlOther.Controls
+                    actionList.Add(control.ActionData)
+                Next
 
                 SaveCharacter(charName, actionList)
             Else
@@ -73,7 +78,8 @@
         Try
             Dim character As Character = GetCharacterFromName(cmbCharacter.Text)
 
-            pnlActions.Controls.Clear()
+            ClearActions()
+
             For Each action As Action In character.Actions
                 AddAction(action)
             Next
@@ -92,9 +98,23 @@
         Select Case newAction.Type
             Case Action.ActionType.Action
                 pnlActions.Controls.Add(newActionItem)
+            Case Action.ActionType.Bonus
+                pnlBonus.Controls.Add(newActionItem)
+            Case Action.ActionType.Reaction
+                pnlReactions.Controls.Add(newActionItem)
+            Case Action.ActionType.Other
+                pnlOther.Controls.Add(newActionItem)
             Case Else
-
+                pnlOther.Controls.Add(newActionItem)
         End Select
+    End Sub
+
+    Private Sub ClearActions()
+        pnlActions.Controls.Clear()
+        pnlBonus.Controls.Clear()
+        pnlReactions.Controls.Clear()
+        pnlOther.Controls.Clear()
+        System.GC.Collect()
     End Sub
 
 #Region "Debug"

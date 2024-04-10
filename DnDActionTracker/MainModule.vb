@@ -6,9 +6,11 @@ Module MainModule
 
     Public Function GetCharacterList() As String()
         Dim charList As New List(Of String)
-        For Each file As String In Directory.GetFiles(CharacterPath, "*.json")
-            charList.Add(Path.GetFileNameWithoutExtension(file))
-        Next
+        If Directory.Exists(CharacterPath) Then
+            For Each file As String In Directory.GetFiles(CharacterPath, "*.json")
+                charList.Add(Path.GetFileNameWithoutExtension(file))
+            Next
+        End If
 
         Return charList.ToArray
     End Function
@@ -28,9 +30,11 @@ Module MainModule
     Public Function GetCharacterFromName(ByVal name As String) As Character
         Dim filePath As String = Path.Combine(CharacterPath, name & ".json")
         Dim character As Character
-        Using sr As New StreamReader(filePath)
-            character = JsonConvert.DeserializeObject(Of Character)(sr.ReadLine)
-        End Using
+        If Directory.Exists(CharacterPath) Then
+            Using sr As New StreamReader(filePath)
+                character = JsonConvert.DeserializeObject(Of Character)(sr.ReadLine)
+            End Using
+        End If
         Return character
     End Function
 End Module

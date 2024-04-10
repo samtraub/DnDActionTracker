@@ -71,8 +71,14 @@
         Select Case Me.Parent.Name
             Case "pnlActions"
                 currentType = Action.ActionType.Action
+            Case "pnlBonus"
+                currentType = Action.ActionType.Bonus
+            Case "pnlReactions"
+                currentType = Action.ActionType.Reaction
+            Case "pnlOther"
+                currentType = Action.ActionType.Other
             Case Else
-                currentType = Action.ActionType.Action
+                currentType = Action.ActionType.Other
         End Select
 
         Dim addNewForm As New InputForm(btnActionName.Text, lblActionDescription.Text, currentType)
