@@ -51,14 +51,16 @@
     End Sub
 
     Private Sub btnActionName_Click(sender As Object, e As EventArgs) Handles btnActionName.Click
-        If Selected Then
-            Me.Height = btnActionName.Height
-            lblActionDescription.Visible = False
-            Selected = False
-        Else
-            lblActionDescription.Visible = True
-            Me.Height = btnActionName.Height + lblActionDescription.Height + 5
-            Selected = True
+        If Not Control.ModifierKeys = Keys.Control Then
+            If Selected Then
+                Me.Height = btnActionName.Height
+                lblActionDescription.Visible = False
+                Selected = False
+            Else
+                lblActionDescription.Visible = True
+                Me.Height = btnActionName.Height + lblActionDescription.Height + 5
+                Selected = True
+            End If
         End If
     End Sub
 

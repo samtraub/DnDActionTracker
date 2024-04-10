@@ -27,16 +27,16 @@ Partial Class Form1
         Me.btnSave = New System.Windows.Forms.Button()
         Me.tcActionBreakdown = New System.Windows.Forms.TabControl()
         Me.tpActions = New System.Windows.Forms.TabPage()
-        Me.pnlActions = New System.Windows.Forms.Panel()
+        Me.flpActions = New System.Windows.Forms.FlowLayoutPanel()
         Me.tpBonus = New System.Windows.Forms.TabPage()
         Me.tpReactions = New System.Windows.Forms.TabPage()
         Me.tpOther = New System.Windows.Forms.TabPage()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.btnDebug = New System.Windows.Forms.Button()
-        Me.pnlBonus = New System.Windows.Forms.Panel()
-        Me.pnlReactions = New System.Windows.Forms.Panel()
-        Me.pnlOther = New System.Windows.Forms.Panel()
+        Me.flpBonus = New System.Windows.Forms.FlowLayoutPanel()
+        Me.flpReactions = New System.Windows.Forms.FlowLayoutPanel()
+        Me.flpOther = New System.Windows.Forms.FlowLayoutPanel()
         Me.tcActionBreakdown.SuspendLayout()
         Me.tpActions.SuspendLayout()
         Me.tpBonus.SuspendLayout()
@@ -89,7 +89,7 @@ Partial Class Form1
         '
         'tpActions
         '
-        Me.tpActions.Controls.Add(Me.pnlActions)
+        Me.tpActions.Controls.Add(Me.flpActions)
         Me.tpActions.Location = New System.Drawing.Point(4, 24)
         Me.tpActions.Name = "tpActions"
         Me.tpActions.Padding = New System.Windows.Forms.Padding(3)
@@ -98,18 +98,17 @@ Partial Class Form1
         Me.tpActions.Text = "Actions"
         Me.tpActions.UseVisualStyleBackColor = True
         '
-        'pnlActions
+        'flpActions
         '
-        Me.pnlActions.AutoScroll = True
-        Me.pnlActions.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlActions.Location = New System.Drawing.Point(3, 3)
-        Me.pnlActions.Name = "pnlActions"
-        Me.pnlActions.Size = New System.Drawing.Size(746, 357)
-        Me.pnlActions.TabIndex = 0
+        Me.flpActions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpActions.Location = New System.Drawing.Point(3, 3)
+        Me.flpActions.Name = "flpActions"
+        Me.flpActions.Size = New System.Drawing.Size(746, 357)
+        Me.flpActions.TabIndex = 0
         '
         'tpBonus
         '
-        Me.tpBonus.Controls.Add(Me.pnlBonus)
+        Me.tpBonus.Controls.Add(Me.flpBonus)
         Me.tpBonus.Location = New System.Drawing.Point(4, 24)
         Me.tpBonus.Name = "tpBonus"
         Me.tpBonus.Padding = New System.Windows.Forms.Padding(3)
@@ -120,7 +119,7 @@ Partial Class Form1
         '
         'tpReactions
         '
-        Me.tpReactions.Controls.Add(Me.pnlReactions)
+        Me.tpReactions.Controls.Add(Me.flpReactions)
         Me.tpReactions.Location = New System.Drawing.Point(4, 24)
         Me.tpReactions.Name = "tpReactions"
         Me.tpReactions.Padding = New System.Windows.Forms.Padding(3)
@@ -131,7 +130,7 @@ Partial Class Form1
         '
         'tpOther
         '
-        Me.tpOther.Controls.Add(Me.pnlOther)
+        Me.tpOther.Controls.Add(Me.flpOther)
         Me.tpOther.Location = New System.Drawing.Point(4, 24)
         Me.tpOther.Name = "tpOther"
         Me.tpOther.Padding = New System.Windows.Forms.Padding(3)
@@ -171,32 +170,29 @@ Partial Class Form1
         Me.btnDebug.UseVisualStyleBackColor = True
         Me.btnDebug.Visible = False
         '
-        'pnlBonus
+        'flpBonus
         '
-        Me.pnlBonus.AutoScroll = True
-        Me.pnlBonus.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlBonus.Location = New System.Drawing.Point(3, 3)
-        Me.pnlBonus.Name = "pnlBonus"
-        Me.pnlBonus.Size = New System.Drawing.Size(746, 357)
-        Me.pnlBonus.TabIndex = 1
+        Me.flpBonus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpBonus.Location = New System.Drawing.Point(3, 3)
+        Me.flpBonus.Name = "flpBonus"
+        Me.flpBonus.Size = New System.Drawing.Size(746, 357)
+        Me.flpBonus.TabIndex = 0
         '
-        'pnlReactions
+        'flpReactions
         '
-        Me.pnlReactions.AutoScroll = True
-        Me.pnlReactions.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlReactions.Location = New System.Drawing.Point(3, 3)
-        Me.pnlReactions.Name = "pnlReactions"
-        Me.pnlReactions.Size = New System.Drawing.Size(746, 357)
-        Me.pnlReactions.TabIndex = 1
+        Me.flpReactions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpReactions.Location = New System.Drawing.Point(3, 3)
+        Me.flpReactions.Name = "flpReactions"
+        Me.flpReactions.Size = New System.Drawing.Size(746, 357)
+        Me.flpReactions.TabIndex = 0
         '
-        'pnlOther
+        'flpOther
         '
-        Me.pnlOther.AutoScroll = True
-        Me.pnlOther.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlOther.Location = New System.Drawing.Point(3, 3)
-        Me.pnlOther.Name = "pnlOther"
-        Me.pnlOther.Size = New System.Drawing.Size(746, 357)
-        Me.pnlOther.TabIndex = 1
+        Me.flpOther.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpOther.Location = New System.Drawing.Point(3, 3)
+        Me.flpOther.Name = "flpOther"
+        Me.flpOther.Size = New System.Drawing.Size(746, 357)
+        Me.flpOther.TabIndex = 0
         '
         'Form1
         '
@@ -231,10 +227,10 @@ Partial Class Form1
     Friend WithEvents tpReactions As TabPage
     Friend WithEvents tpOther As TabPage
     Friend WithEvents btnClear As Button
-    Friend WithEvents pnlActions As Panel
     Friend WithEvents btnDelete As Button
     Friend WithEvents btnDebug As Button
-    Friend WithEvents pnlBonus As Panel
-    Friend WithEvents pnlReactions As Panel
-    Friend WithEvents pnlOther As Panel
+    Friend WithEvents flpActions As FlowLayoutPanel
+    Friend WithEvents flpBonus As FlowLayoutPanel
+    Friend WithEvents flpReactions As FlowLayoutPanel
+    Friend WithEvents flpOther As FlowLayoutPanel
 End Class

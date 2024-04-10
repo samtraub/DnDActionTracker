@@ -42,16 +42,16 @@
             Dim charName As String = cmbCharacter.Text
             If Not charName.Equals("") Then
                 Dim actionList As New List(Of Action)
-                For Each control As ActionItem In pnlActions.Controls
+                For Each control As ActionItem In flpActions.Controls
                     actionList.Add(control.ActionData)
                 Next
-                For Each control As ActionItem In pnlBonus.Controls
+                For Each control As ActionItem In flpBonus.Controls
                     actionList.Add(control.ActionData)
                 Next
-                For Each control As ActionItem In pnlReactions.Controls
+                For Each control As ActionItem In flpReactions.Controls
                     actionList.Add(control.ActionData)
                 Next
-                For Each control As ActionItem In pnlOther.Controls
+                For Each control As ActionItem In flpOther.Controls
                     actionList.Add(control.ActionData)
                 Next
 
@@ -65,10 +65,10 @@
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        For i = pnlActions.Controls.Count - 1 To 0 Step -1
-            Dim currentControl As ActionItem = pnlActions.Controls(i)
+        For i = flpActions.Controls.Count - 1 To 0 Step -1
+            Dim currentControl As ActionItem = flpActions.Controls(i)
             If currentControl.Selected Then
-                pnlActions.Controls.Remove(currentControl)
+                flpActions.Controls.Remove(currentControl)
                 System.GC.Collect()
             End If
         Next
@@ -91,35 +91,131 @@
 
     Private Sub AddAction(ByVal newAction As Action)
         Dim newActionItem As New ActionItem(newAction) With {
-                .Dock = DockStyle.Top,
-                .Width = pnlActions.Width - 24
+                .Width = flpActions.Width - 24
             }
+        AddHandler newActionItem.btnActionName.MouseDown, AddressOf Item_MouseDown
+        AddHandler newActionItem.btnActionName.MouseUp, AddressOf Item_MouseUp
+        AddHandler newActionItem.btnActionName.MouseMove, AddressOf Item_MouseMove
 
         Select Case newAction.Type
             Case Action.ActionType.Action
-                pnlActions.Controls.Add(newActionItem)
+                flpActions.Controls.Add(newActionItem)
             Case Action.ActionType.Bonus
-                pnlBonus.Controls.Add(newActionItem)
+                flpBonus.Controls.Add(newActionItem)
             Case Action.ActionType.Reaction
-                pnlReactions.Controls.Add(newActionItem)
+                flpReactions.Controls.Add(newActionItem)
             Case Action.ActionType.Other
-                pnlOther.Controls.Add(newActionItem)
+                flpOther.Controls.Add(newActionItem)
             Case Else
-                pnlOther.Controls.Add(newActionItem)
+                flpOther.Controls.Add(newActionItem)
         End Select
     End Sub
 
     Private Sub ClearActions()
-        pnlActions.Controls.Clear()
-        pnlBonus.Controls.Clear()
-        pnlReactions.Controls.Clear()
-        pnlOther.Controls.Clear()
+        flpActions.Controls.Clear()
+        flpBonus.Controls.Clear()
+        flpReactions.Controls.Clear()
+        flpOther.Controls.Clear()
         System.GC.Collect()
     End Sub
 
+#Region "Dragging"
+    Private dragging As Boolean = False
+    Private xOffset As Integer = 0
+    Private yOffset As Integer = 0
+    Private clickedIndex As Integer = -1
+
+    Private Sub Item_MouseDown(sender As Object, e As MouseEventArgs)
+        If e.Button = MouseButtons.Left Then
+            Dim itemControl As ActionItem = sender.Parent
+            Dim parentPanel As FlowLayoutPanel = itemControl.Parent
+
+            parentPanel.SuspendLayout()
+            ' Save the current index in case it's just a click, then set to 0 so it is on top
+            clickedIndex = parentPanel.Controls.GetChildIndex(itemControl)
+            parentPanel.Controls.SetChildIndex(itemControl, 0)
+
+            If Control.ModifierKeys = Keys.Control Then
+                dragging = True
+                xOffset = e.X
+                yOffset = e.Y
+            End If
+        End If
+    End Sub
+
+    Private Sub Item_MouseUp(sender As Object, e As MouseEventArgs)
+        Dim itemControl As ActionItem = sender.Parent
+        Dim parentPanel As FlowLayoutPanel = itemControl.Parent
+
+        dragging = False
+        Dim idX As Integer = GetIndexOfOverlappedControl(itemControl)
+
+        If idX <> -1 Then
+            parentPanel.Controls.SetChildIndex(itemControl, idX)
+        End If
+
+        parentPanel.ResumeLayout()
+    End Sub
+
+    Private Function GetIndexOfOverlappedControl(item As ActionItem) As Integer
+        Dim bloc As Point = item.Location
+        Dim idx As Integer = clickedIndex
+
+        For Each newItem As ActionItem In item.Parent.Controls
+            If (item.Location.X > newItem.Location.X) AndAlso (item.Location.X < (newItem.Location.X + item.Width) AndAlso (item.Location.Y > newItem.Location.Y) AndAlso (item.Location.Y < (newItem.Location.Y + item.Height))) Then
+                idx = item.Parent.Controls.GetChildIndex(newItem)
+            End If
+        Next
+
+        clickedIndex = -1
+        Return idx
+    End Function
+
+    Private Sub Item_MouseMove(sender As Object, e As MouseEventArgs)
+        If dragging Then
+            Dim itemControl As ActionItem = sender.Parent
+            Dim parentPanel As FlowLayoutPanel = itemControl.Parent
+
+            Dim xMoved As Integer
+            Dim yMoved As Integer
+
+            Dim newX As Integer
+            Dim newY As Integer
+
+            xMoved = e.Location.X - xOffset
+            yMoved = e.Location.Y - yOffset
+
+            newX = itemControl.Location.X + xMoved
+            newY = itemControl.Location.Y + yMoved
+
+            If newX <= 0 Then
+                newX = itemControl.Location.X
+            ElseIf newX + itemControl.Width >= Me.ClientSize.Width Then
+                newX = itemControl.Location.X
+            End If
+
+            If newY <= 0 Then
+                newY = itemControl.Location.Y
+            ElseIf newY + itemControl.Height >= Me.ClientSize.Height Then
+                newY = itemControl.Location.Y
+            End If
+
+            itemControl.Location = New Point(newX, newY)
+        End If
+    End Sub
+
+    Private Sub DisableLayouts()
+        flpActions.SuspendLayout()
+    End Sub
+
+    Private Sub EnableLayouts()
+        flpActions.ResumeLayout()
+    End Sub
+#End Region
+
 #Region "Debug"
     Private Sub btnDebug_Click(sender As Object, e As EventArgs) Handles btnDebug.Click
-        AddAction(New Action)
+        AddAction(New Action("Bonus", "", Action.ActionType.Bonus))
     End Sub
 #End Region
 End Class
