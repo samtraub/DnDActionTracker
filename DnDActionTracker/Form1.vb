@@ -69,9 +69,28 @@
             Dim currentControl As ActionItem = flpActions.Controls(i)
             If currentControl.Selected Then
                 flpActions.Controls.Remove(currentControl)
-                System.GC.Collect()
             End If
         Next
+        For i = flpBonus.Controls.Count - 1 To 0 Step -1
+            Dim currentControl As ActionItem = flpBonus.Controls(i)
+            If currentControl.Selected Then
+                flpBonus.Controls.Remove(currentControl)
+            End If
+        Next
+        For i = flpReactions.Controls.Count - 1 To 0 Step -1
+            Dim currentControl As ActionItem = flpReactions.Controls(i)
+            If currentControl.Selected Then
+                flpReactions.Controls.Remove(currentControl)
+            End If
+        Next
+        For i = flpOther.Controls.Count - 1 To 0 Step -1
+            Dim currentControl As ActionItem = flpOther.Controls(i)
+            If currentControl.Selected Then
+                flpOther.Controls.Remove(currentControl)
+            End If
+        Next
+
+        System.GC.Collect()
     End Sub
 
     Private Sub cmbCharacter_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbCharacter.SelectedValueChanged
