@@ -9,7 +9,7 @@
 
 #Region "Declarations"
     Private _name As String = "Action"
-    Private _description As String = ""
+    Private _description As String = "Description of the action."
     Private _type As ActionType = ActionType.Action
 #End Region
 

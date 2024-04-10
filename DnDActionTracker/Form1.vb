@@ -1,5 +1,8 @@
 ﻿Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+#If DEBUG Then
+        btnDebug.Visible = True
+#End If
         cmbCharacter.Items.AddRange(GetCharacterList)
     End Sub
 
@@ -8,6 +11,8 @@
 #Region "Control Events"
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         pnlActions.Controls.Clear()
+
+        System.GC.Collect()
     End Sub
 
     Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAddItem.Click
@@ -91,4 +96,10 @@
 
         End Select
     End Sub
+
+#Region "Debug"
+    Private Sub btnDebug_Click(sender As Object, e As EventArgs) Handles btnDebug.Click
+        AddAction(New Action)
+    End Sub
+#End Region
 End Class

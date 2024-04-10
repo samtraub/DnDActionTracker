@@ -33,6 +33,7 @@ Partial Class Form1
         Me.tpOther = New System.Windows.Forms.TabPage()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnDebug = New System.Windows.Forms.Button()
         Me.tcActionBreakdown.SuspendLayout()
         Me.tpActions.SuspendLayout()
         Me.SuspendLayout()
@@ -150,11 +151,23 @@ Partial Class Form1
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
+        'btnDebug
+        '
+        Me.btnDebug.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDebug.Location = New System.Drawing.Point(674, 41)
+        Me.btnDebug.Name = "btnDebug"
+        Me.btnDebug.Size = New System.Drawing.Size(98, 23)
+        Me.btnDebug.TabIndex = 6
+        Me.btnDebug.Text = "Add Debug"
+        Me.btnDebug.UseVisualStyleBackColor = True
+        Me.btnDebug.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
+        Me.Controls.Add(Me.btnDebug)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.tcActionBreakdown)
@@ -181,4 +194,5 @@ Partial Class Form1
     Friend WithEvents btnClear As Button
     Friend WithEvents pnlActions As Panel
     Friend WithEvents btnDelete As Button
+    Friend WithEvents btnDebug As Button
 End Class
