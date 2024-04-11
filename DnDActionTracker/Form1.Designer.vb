@@ -29,14 +29,14 @@ Partial Class Form1
         Me.tpActions = New System.Windows.Forms.TabPage()
         Me.flpActions = New System.Windows.Forms.FlowLayoutPanel()
         Me.tpBonus = New System.Windows.Forms.TabPage()
+        Me.flpBonus = New System.Windows.Forms.FlowLayoutPanel()
         Me.tpReactions = New System.Windows.Forms.TabPage()
+        Me.flpReactions = New System.Windows.Forms.FlowLayoutPanel()
         Me.tpOther = New System.Windows.Forms.TabPage()
+        Me.flpOther = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.btnDebug = New System.Windows.Forms.Button()
-        Me.flpBonus = New System.Windows.Forms.FlowLayoutPanel()
-        Me.flpReactions = New System.Windows.Forms.FlowLayoutPanel()
-        Me.flpOther = New System.Windows.Forms.FlowLayoutPanel()
         Me.tcActionBreakdown.SuspendLayout()
         Me.tpActions.SuspendLayout()
         Me.tpBonus.SuspendLayout()
@@ -100,6 +100,7 @@ Partial Class Form1
         '
         'flpActions
         '
+        Me.flpActions.AutoScroll = True
         Me.flpActions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpActions.Location = New System.Drawing.Point(3, 3)
         Me.flpActions.Name = "flpActions"
@@ -117,6 +118,15 @@ Partial Class Form1
         Me.tpBonus.Text = "Bonus Actions"
         Me.tpBonus.UseVisualStyleBackColor = True
         '
+        'flpBonus
+        '
+        Me.flpBonus.AutoScroll = True
+        Me.flpBonus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpBonus.Location = New System.Drawing.Point(3, 3)
+        Me.flpBonus.Name = "flpBonus"
+        Me.flpBonus.Size = New System.Drawing.Size(746, 357)
+        Me.flpBonus.TabIndex = 0
+        '
         'tpReactions
         '
         Me.tpReactions.Controls.Add(Me.flpReactions)
@@ -128,6 +138,15 @@ Partial Class Form1
         Me.tpReactions.Text = "Reactions"
         Me.tpReactions.UseVisualStyleBackColor = True
         '
+        'flpReactions
+        '
+        Me.flpReactions.AutoScroll = True
+        Me.flpReactions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpReactions.Location = New System.Drawing.Point(3, 3)
+        Me.flpReactions.Name = "flpReactions"
+        Me.flpReactions.Size = New System.Drawing.Size(746, 357)
+        Me.flpReactions.TabIndex = 0
+        '
         'tpOther
         '
         Me.tpOther.Controls.Add(Me.flpOther)
@@ -138,6 +157,15 @@ Partial Class Form1
         Me.tpOther.TabIndex = 3
         Me.tpOther.Text = "Other"
         Me.tpOther.UseVisualStyleBackColor = True
+        '
+        'flpOther
+        '
+        Me.flpOther.AutoScroll = True
+        Me.flpOther.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.flpOther.Location = New System.Drawing.Point(3, 3)
+        Me.flpOther.Name = "flpOther"
+        Me.flpOther.Size = New System.Drawing.Size(746, 357)
+        Me.flpOther.TabIndex = 0
         '
         'btnClear
         '
@@ -169,30 +197,6 @@ Partial Class Form1
         Me.btnDebug.Text = "Add Debug"
         Me.btnDebug.UseVisualStyleBackColor = True
         Me.btnDebug.Visible = False
-        '
-        'flpBonus
-        '
-        Me.flpBonus.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpBonus.Location = New System.Drawing.Point(3, 3)
-        Me.flpBonus.Name = "flpBonus"
-        Me.flpBonus.Size = New System.Drawing.Size(746, 357)
-        Me.flpBonus.TabIndex = 0
-        '
-        'flpReactions
-        '
-        Me.flpReactions.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpReactions.Location = New System.Drawing.Point(3, 3)
-        Me.flpReactions.Name = "flpReactions"
-        Me.flpReactions.Size = New System.Drawing.Size(746, 357)
-        Me.flpReactions.TabIndex = 0
-        '
-        'flpOther
-        '
-        Me.flpOther.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.flpOther.Location = New System.Drawing.Point(3, 3)
-        Me.flpOther.Name = "flpOther"
-        Me.flpOther.Size = New System.Drawing.Size(746, 357)
-        Me.flpOther.TabIndex = 0
         '
         'Form1
         '
