@@ -71,13 +71,13 @@
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
         Dim currentType As Action.ActionType
         Select Case Me.Parent.Name
-            Case "pnlActions"
+            Case "flpActions"
                 currentType = Action.ActionType.Action
-            Case "pnlBonus"
+            Case "flpBonus"
                 currentType = Action.ActionType.Bonus
-            Case "pnlReactions"
+            Case "flpReactions"
                 currentType = Action.ActionType.Reaction
-            Case "pnlOther"
+            Case "flpOther"
                 currentType = Action.ActionType.Other
             Case Else
                 currentType = Action.ActionType.Other
