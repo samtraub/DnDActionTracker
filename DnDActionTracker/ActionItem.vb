@@ -2,6 +2,8 @@
     Private _selected As Boolean = False
     Private _actionData As Action
 
+    Public Event ActionMoved(item As ActionItem, type As Action.ActionType)
+
     Public Property Selected As Boolean
         Get
             Return _selected
@@ -106,6 +108,10 @@
             'TODO: if currentType and actionType are not the same, move the item to the proper location
 
             Me.ActionData = New Action(name, description, actionType)
+
+            If actionType <> currentType Then
+                RaiseEvent ActionMoved(Me, currentType)
+            End If
         End If
     End Sub
 End Class

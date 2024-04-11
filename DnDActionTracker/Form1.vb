@@ -115,6 +115,7 @@
         AddHandler newActionItem.btnActionName.MouseDown, AddressOf Item_MouseDown
         AddHandler newActionItem.btnActionName.MouseUp, AddressOf Item_MouseUp
         AddHandler newActionItem.btnActionName.MouseMove, AddressOf Item_MouseMove
+        AddHandler newActionItem.ActionMoved, AddressOf ActionMoved
 
         Select Case newAction.Type
             Case Action.ActionType.Action
@@ -130,12 +131,22 @@
         End Select
     End Sub
 
+    Private Sub RemoveActionItem(ByVal item As ActionItem)
+        Dim parentList As Control = item.Parent
+        parentList.Controls.Remove(item)
+    End Sub
+
     Private Sub ClearActions()
         flpActions.Controls.Clear()
         flpBonus.Controls.Clear()
         flpReactions.Controls.Clear()
         flpOther.Controls.Clear()
         System.GC.Collect()
+    End Sub
+
+    Private Sub ActionMoved(item As ActionItem, type As Action.ActionType)
+        RemoveActionItem(item)
+        AddAction(item.ActionData)
     End Sub
 
 #Region "Dragging"
@@ -221,14 +232,6 @@
 
             itemControl.Location = New Point(newX, newY)
         End If
-    End Sub
-
-    Private Sub DisableLayouts()
-        flpActions.SuspendLayout()
-    End Sub
-
-    Private Sub EnableLayouts()
-        flpActions.ResumeLayout()
     End Sub
 #End Region
 
