@@ -6,6 +6,23 @@
         cmbCharacter.Items.AddRange(GetCharacterList)
     End Sub
 
+    Protected Overrides Sub WndProc(ByRef m As Message)
+        MyBase.WndProc(m)
+
+        ' disable horizontal resizing, but keep vertical resize
+        Select Case m.Msg
+            Case &H84
+                Dim result As Integer = m.Result.ToInt32()
+                If result = 10 OrElse result = 11 Then ' left and right
+                    m.Result = New IntPtr(0) ' nowhere
+                ElseIf result = 13 OrElse result = 14 Then ' topleft and topright
+                    m.Result = New IntPtr(12) ' top
+                ElseIf result = 16 OrElse result = 17 Then 'bottomleft and bottomright
+                    m.Result = New IntPtr(15) 'bottom
+                End If
+        End Select
+    End Sub
+
 #Region "Control Events"
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         ClearActions()
