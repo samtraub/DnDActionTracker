@@ -11,6 +11,7 @@
     Private _name As String = "Action"
     Private _description As String = "Description of the action."
     Private _type As ActionType = ActionType.Action
+    Private _tags As New List(Of String)
 #End Region
 
 #Region "Properties"
@@ -38,6 +39,15 @@
             _type = value
         End Set
     End Property
+
+    Public Property Tags As List(Of String)
+        Get
+            Return _tags
+        End Get
+        Set(value As List(Of String))
+            _tags = value
+        End Set
+    End Property
 #End Region
 
 #Region "Initialization"
@@ -45,10 +55,15 @@
 
     End Sub
 
-    Public Sub New(ByVal name As String, Optional desc As String = "", Optional type As ActionType = ActionType.Action)
+    Public Sub New(ByVal name As String, Optional desc As String = "", Optional type As ActionType = ActionType.Action, Optional tags As List(Of String) = Nothing)
         Me.Name = name
         Me.Description = desc
         Me.Type = type
+        If tags IsNot Nothing Then
+            Me.Tags = tags
+        Else
+            Me.Tags = New List(Of String)
+        End If
     End Sub
 #End Region
 

@@ -49,7 +49,12 @@
                     actionType = Action.ActionType.Other
             End Select
 
-            Dim newAction As New Action(name, description, actionType)
+            Dim tagList As New List(Of String)
+            For Each tag As TagItem In addNewForm.flpTags.Controls
+                tagList.Add(tag.TagName)
+            Next
+
+            Dim newAction As New Action(name, description, actionType, tagList)
             AddAction(newAction)
         End If
     End Sub

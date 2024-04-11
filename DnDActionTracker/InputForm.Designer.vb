@@ -34,6 +34,10 @@ Partial Class InputForm
         Me.rdoOther = New System.Windows.Forms.RadioButton()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
+        Me.flpTags = New System.Windows.Forms.FlowLayoutPanel()
+        Me.lblTags = New System.Windows.Forms.Label()
+        Me.txtTagInput = New System.Windows.Forms.TextBox()
+        Me.btnAddTag = New System.Windows.Forms.Button()
         Me.grpActionType.SuspendLayout()
         Me.flpActionType.SuspendLayout()
         Me.SuspendLayout()
@@ -67,21 +71,21 @@ Partial Class InputForm
         '
         'txtDescription
         '
-        Me.txtDescription.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtDescription.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDescription.Location = New System.Drawing.Point(12, 68)
         Me.txtDescription.Multiline = True
         Me.txtDescription.Name = "txtDescription"
-        Me.txtDescription.Size = New System.Drawing.Size(358, 120)
+        Me.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtDescription.Size = New System.Drawing.Size(358, 147)
         Me.txtDescription.TabIndex = 3
         '
         'grpActionType
         '
-        Me.grpActionType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.grpActionType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grpActionType.Controls.Add(Me.flpActionType)
-        Me.grpActionType.Location = New System.Drawing.Point(12, 194)
+        Me.grpActionType.Location = New System.Drawing.Point(12, 221)
         Me.grpActionType.Name = "grpActionType"
         Me.grpActionType.Size = New System.Drawing.Size(358, 51)
         Me.grpActionType.TabIndex = 4
@@ -144,7 +148,8 @@ Partial Class InputForm
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(295, 251)
+        Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSave.Location = New System.Drawing.Point(295, 344)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 5
@@ -153,18 +158,62 @@ Partial Class InputForm
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(214, 251)
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.Location = New System.Drawing.Point(214, 344)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 6
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
+        'flpTags
+        '
+        Me.flpTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.flpTags.AutoSize = True
+        Me.flpTags.Location = New System.Drawing.Point(15, 308)
+        Me.flpTags.MaximumSize = New System.Drawing.Size(358, 0)
+        Me.flpTags.Name = "flpTags"
+        Me.flpTags.Size = New System.Drawing.Size(355, 28)
+        Me.flpTags.TabIndex = 7
+        '
+        'lblTags
+        '
+        Me.lblTags.AutoSize = True
+        Me.lblTags.Location = New System.Drawing.Point(12, 282)
+        Me.lblTags.Name = "lblTags"
+        Me.lblTags.Size = New System.Drawing.Size(33, 15)
+        Me.lblTags.TabIndex = 8
+        Me.lblTags.Text = "Tags:"
+        '
+        'txtTagInput
+        '
+        Me.txtTagInput.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtTagInput.Location = New System.Drawing.Point(51, 279)
+        Me.txtTagInput.Name = "txtTagInput"
+        Me.txtTagInput.Size = New System.Drawing.Size(216, 23)
+        Me.txtTagInput.TabIndex = 9
+        '
+        'btnAddTag
+        '
+        Me.btnAddTag.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAddTag.Location = New System.Drawing.Point(273, 279)
+        Me.btnAddTag.Name = "btnAddTag"
+        Me.btnAddTag.Size = New System.Drawing.Size(97, 23)
+        Me.btnAddTag.TabIndex = 10
+        Me.btnAddTag.Text = "Add Tag"
+        Me.btnAddTag.UseVisualStyleBackColor = True
+        '
         'InputForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(382, 286)
+        Me.ClientSize = New System.Drawing.Size(382, 379)
+        Me.Controls.Add(Me.btnAddTag)
+        Me.Controls.Add(Me.txtTagInput)
+        Me.Controls.Add(Me.lblTags)
+        Me.Controls.Add(Me.flpTags)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.grpActionType)
@@ -172,6 +221,7 @@ Partial Class InputForm
         Me.Controls.Add(Me.lblDescription)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.txtName)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "InputForm"
         Me.Text = "Action Information"
         Me.grpActionType.ResumeLayout(False)
@@ -194,4 +244,8 @@ Partial Class InputForm
     Friend WithEvents rdoOther As RadioButton
     Friend WithEvents btnSave As Button
     Friend WithEvents btnCancel As Button
+    Friend WithEvents flpTags As FlowLayoutPanel
+    Friend WithEvents lblTags As Label
+    Friend WithEvents txtTagInput As TextBox
+    Friend WithEvents btnAddTag As Button
 End Class

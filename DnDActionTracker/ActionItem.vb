@@ -71,21 +71,9 @@
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-        Dim currentType As Action.ActionType
-        Select Case Me.Parent.Name
-            Case "flpActions"
-                currentType = Action.ActionType.Action
-            Case "flpBonus"
-                currentType = Action.ActionType.Bonus
-            Case "flpReactions"
-                currentType = Action.ActionType.Reaction
-            Case "flpOther"
-                currentType = Action.ActionType.Other
-            Case Else
-                currentType = Action.ActionType.Other
-        End Select
+        Dim previousType As Action.ActionType = Me.ActionData.Type
 
-        Dim addNewForm As New InputForm(btnActionName.Text, lblActionDescription.Text, currentType)
+        Dim addNewForm As New InputForm(Me.ActionData.Name, Me.ActionData.Description, Me.ActionData.Type, Me.ActionData.Tags)
         If addNewForm.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK Then
             'Add a new item with the info
             Dim name As String = addNewForm.txtName.Text
@@ -105,12 +93,15 @@
                     actionType = Action.ActionType.Other
             End Select
 
-            'TODO: if currentType and actionType are not the same, move the item to the proper location
+            Dim tagList As New List(Of String)
+            For Each tag As TagItem In addNewForm.flpTags.Controls
+                tagList.Add(tag.TagName)
+            Next
 
-            Me.ActionData = New Action(name, description, actionType)
+            Me.ActionData = New Action(name, description, actionType, tagList)
 
-            If actionType <> currentType Then
-                RaiseEvent ActionMoved(Me, currentType)
+            If actionType <> previousType Then
+                RaiseEvent ActionMoved(Me, previousType)
             End If
         End If
     End Sub
