@@ -80,35 +80,6 @@
         End Try
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        For i = flpActions.Controls.Count - 1 To 0 Step -1
-            Dim currentControl As ActionItem = flpActions.Controls(i)
-            If currentControl.Selected Then
-                flpActions.Controls.Remove(currentControl)
-            End If
-        Next
-        For i = flpBonus.Controls.Count - 1 To 0 Step -1
-            Dim currentControl As ActionItem = flpBonus.Controls(i)
-            If currentControl.Selected Then
-                flpBonus.Controls.Remove(currentControl)
-            End If
-        Next
-        For i = flpReactions.Controls.Count - 1 To 0 Step -1
-            Dim currentControl As ActionItem = flpReactions.Controls(i)
-            If currentControl.Selected Then
-                flpReactions.Controls.Remove(currentControl)
-            End If
-        Next
-        For i = flpOther.Controls.Count - 1 To 0 Step -1
-            Dim currentControl As ActionItem = flpOther.Controls(i)
-            If currentControl.Selected Then
-                flpOther.Controls.Remove(currentControl)
-            End If
-        Next
-
-        System.GC.Collect()
-    End Sub
-
     Private Sub cmbCharacter_SelectedValueChanged(sender As Object, e As EventArgs) Handles cmbCharacter.SelectedValueChanged
         Try
             Dim character As Character = GetCharacterFromName(cmbCharacter.Text)
@@ -216,6 +187,7 @@
         AddHandler newActionItem.btnActionName.MouseUp, AddressOf Item_MouseUp
         AddHandler newActionItem.btnActionName.MouseMove, AddressOf Item_MouseMove
         AddHandler newActionItem.ActionMoved, AddressOf ActionMoved
+        AddHandler newActionItem.DeleteItem, AddressOf ActionDeleted
 
         Select Case newAction.Type
             Case Action.ActionType.Action
@@ -231,6 +203,10 @@
         End Select
 
         actionItemList.Add(newActionItem)
+    End Sub
+
+    Private Sub ActionDeleted(item As ActionItem, e As EventArgs)
+        RemoveActionItem(item)
     End Sub
 
     Private Sub RemoveActionItem(ByVal item As ActionItem)

@@ -35,7 +35,6 @@ Partial Class Form1
         Me.tpOther = New System.Windows.Forms.TabPage()
         Me.flpOther = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
         Me.flpActionTags = New System.Windows.Forms.FlowLayoutPanel()
         Me.tcActionBreakdown.SuspendLayout()
         Me.tpActions.SuspendLayout()
@@ -177,16 +176,6 @@ Partial Class Form1
         Me.btnClear.Text = "Clear"
         Me.btnClear.UseVisualStyleBackColor = True
         '
-        'btnDelete
-        '
-        Me.btnDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDelete.Location = New System.Drawing.Point(362, 12)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(98, 23)
-        Me.btnDelete.TabIndex = 5
-        Me.btnDelete.Text = "Delete"
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
         'flpActionTags
         '
         Me.flpActionTags.AutoSize = True
@@ -201,7 +190,6 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
         Me.Controls.Add(Me.flpActionTags)
-        Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.tcActionBreakdown)
         Me.Controls.Add(Me.btnSave)
@@ -229,7 +217,6 @@ Partial Class Form1
     Friend WithEvents tpReactions As TabPage
     Friend WithEvents tpOther As TabPage
     Friend WithEvents btnClear As Button
-    Friend WithEvents btnDelete As Button
     Friend WithEvents flpActions As FlowLayoutPanel
     Friend WithEvents flpBonus As FlowLayoutPanel
     Friend WithEvents flpReactions As FlowLayoutPanel

@@ -25,6 +25,7 @@ Partial Class ActionItem
         Me.btnActionName = New System.Windows.Forms.Button()
         Me.lblActionDescription = New System.Windows.Forms.Label()
         Me.btnEdit = New System.Windows.Forms.Button()
+        Me.btnDeleteItem = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnActionName
@@ -33,7 +34,7 @@ Partial Class ActionItem
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnActionName.Location = New System.Drawing.Point(0, 0)
         Me.btnActionName.Name = "btnActionName"
-        Me.btnActionName.Size = New System.Drawing.Size(255, 36)
+        Me.btnActionName.Size = New System.Drawing.Size(210, 36)
         Me.btnActionName.TabIndex = 0
         Me.btnActionName.Text = "Title"
         Me.btnActionName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -54,18 +55,29 @@ Partial Class ActionItem
         'btnEdit
         '
         Me.btnEdit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEdit.Location = New System.Drawing.Point(254, 0)
+        Me.btnEdit.Location = New System.Drawing.Point(209, 0)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(46, 36)
         Me.btnEdit.TabIndex = 2
         Me.btnEdit.Text = "Edit"
         Me.btnEdit.UseVisualStyleBackColor = True
         '
+        'btnDeleteItem
+        '
+        Me.btnDeleteItem.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnDeleteItem.Location = New System.Drawing.Point(254, 0)
+        Me.btnDeleteItem.Name = "btnDeleteItem"
+        Me.btnDeleteItem.Size = New System.Drawing.Size(46, 36)
+        Me.btnDeleteItem.TabIndex = 3
+        Me.btnDeleteItem.Text = "Del"
+        Me.btnDeleteItem.UseVisualStyleBackColor = True
+        '
         'ActionItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
+        Me.Controls.Add(Me.btnDeleteItem)
         Me.Controls.Add(Me.btnEdit)
         Me.Controls.Add(Me.lblActionDescription)
         Me.Controls.Add(Me.btnActionName)
@@ -79,4 +91,5 @@ Partial Class ActionItem
     Friend WithEvents btnActionName As Button
     Friend WithEvents lblActionDescription As Label
     Friend WithEvents btnEdit As Button
+    Friend WithEvents btnDeleteItem As Button
 End Class

@@ -3,6 +3,7 @@
     Private _actionData As Action
 
     Public Event ActionMoved(item As ActionItem, type As Action.ActionType)
+    Public Event DeleteItem(item As ActionItem, e As EventArgs)
 
     Public Property Selected As Boolean
         Get
@@ -104,5 +105,9 @@
                 RaiseEvent ActionMoved(Me, previousType)
             End If
         End If
+    End Sub
+
+    Private Sub btnDeleteItem_Click(sender As Object, e As EventArgs) Handles btnDeleteItem.Click
+        RaiseEvent DeleteItem(Me, e)
     End Sub
 End Class
