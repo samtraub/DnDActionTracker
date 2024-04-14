@@ -36,7 +36,7 @@ Partial Class Form1
         Me.flpOther = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnDebug = New System.Windows.Forms.Button()
+        Me.flpActionTags = New System.Windows.Forms.FlowLayoutPanel()
         Me.tcActionBreakdown.SuspendLayout()
         Me.tpActions.SuspendLayout()
         Me.tpBonus.SuspendLayout()
@@ -81,10 +81,10 @@ Partial Class Form1
         Me.tcActionBreakdown.Controls.Add(Me.tpBonus)
         Me.tcActionBreakdown.Controls.Add(Me.tpReactions)
         Me.tcActionBreakdown.Controls.Add(Me.tpOther)
-        Me.tcActionBreakdown.Location = New System.Drawing.Point(12, 58)
+        Me.tcActionBreakdown.Location = New System.Drawing.Point(12, 78)
         Me.tcActionBreakdown.Name = "tcActionBreakdown"
         Me.tcActionBreakdown.SelectedIndex = 0
-        Me.tcActionBreakdown.Size = New System.Drawing.Size(760, 391)
+        Me.tcActionBreakdown.Size = New System.Drawing.Size(760, 371)
         Me.tcActionBreakdown.TabIndex = 3
         '
         'tpActions
@@ -93,7 +93,7 @@ Partial Class Form1
         Me.tpActions.Location = New System.Drawing.Point(4, 24)
         Me.tpActions.Name = "tpActions"
         Me.tpActions.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpActions.Size = New System.Drawing.Size(752, 363)
+        Me.tpActions.Size = New System.Drawing.Size(752, 343)
         Me.tpActions.TabIndex = 0
         Me.tpActions.Text = "Actions"
         Me.tpActions.UseVisualStyleBackColor = True
@@ -104,7 +104,7 @@ Partial Class Form1
         Me.flpActions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpActions.Location = New System.Drawing.Point(3, 3)
         Me.flpActions.Name = "flpActions"
-        Me.flpActions.Size = New System.Drawing.Size(746, 357)
+        Me.flpActions.Size = New System.Drawing.Size(746, 337)
         Me.flpActions.TabIndex = 0
         '
         'tpBonus
@@ -113,7 +113,7 @@ Partial Class Form1
         Me.tpBonus.Location = New System.Drawing.Point(4, 24)
         Me.tpBonus.Name = "tpBonus"
         Me.tpBonus.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpBonus.Size = New System.Drawing.Size(752, 363)
+        Me.tpBonus.Size = New System.Drawing.Size(752, 343)
         Me.tpBonus.TabIndex = 1
         Me.tpBonus.Text = "Bonus Actions"
         Me.tpBonus.UseVisualStyleBackColor = True
@@ -124,7 +124,7 @@ Partial Class Form1
         Me.flpBonus.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpBonus.Location = New System.Drawing.Point(3, 3)
         Me.flpBonus.Name = "flpBonus"
-        Me.flpBonus.Size = New System.Drawing.Size(746, 357)
+        Me.flpBonus.Size = New System.Drawing.Size(746, 337)
         Me.flpBonus.TabIndex = 0
         '
         'tpReactions
@@ -133,7 +133,7 @@ Partial Class Form1
         Me.tpReactions.Location = New System.Drawing.Point(4, 24)
         Me.tpReactions.Name = "tpReactions"
         Me.tpReactions.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpReactions.Size = New System.Drawing.Size(752, 363)
+        Me.tpReactions.Size = New System.Drawing.Size(752, 343)
         Me.tpReactions.TabIndex = 2
         Me.tpReactions.Text = "Reactions"
         Me.tpReactions.UseVisualStyleBackColor = True
@@ -144,7 +144,7 @@ Partial Class Form1
         Me.flpReactions.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpReactions.Location = New System.Drawing.Point(3, 3)
         Me.flpReactions.Name = "flpReactions"
-        Me.flpReactions.Size = New System.Drawing.Size(746, 357)
+        Me.flpReactions.Size = New System.Drawing.Size(746, 337)
         Me.flpReactions.TabIndex = 0
         '
         'tpOther
@@ -153,7 +153,7 @@ Partial Class Form1
         Me.tpOther.Location = New System.Drawing.Point(4, 24)
         Me.tpOther.Name = "tpOther"
         Me.tpOther.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpOther.Size = New System.Drawing.Size(752, 363)
+        Me.tpOther.Size = New System.Drawing.Size(752, 343)
         Me.tpOther.TabIndex = 3
         Me.tpOther.Text = "Other"
         Me.tpOther.UseVisualStyleBackColor = True
@@ -164,7 +164,7 @@ Partial Class Form1
         Me.flpOther.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpOther.Location = New System.Drawing.Point(3, 3)
         Me.flpOther.Name = "flpOther"
-        Me.flpOther.Size = New System.Drawing.Size(746, 357)
+        Me.flpOther.Size = New System.Drawing.Size(746, 337)
         Me.flpOther.TabIndex = 0
         '
         'btnClear
@@ -187,23 +187,20 @@ Partial Class Form1
         Me.btnDelete.Text = "Delete"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
-        'btnDebug
+        'flpActionTags
         '
-        Me.btnDebug.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDebug.Location = New System.Drawing.Point(674, 41)
-        Me.btnDebug.Name = "btnDebug"
-        Me.btnDebug.Size = New System.Drawing.Size(98, 23)
-        Me.btnDebug.TabIndex = 6
-        Me.btnDebug.Text = "Add Debug"
-        Me.btnDebug.UseVisualStyleBackColor = True
-        Me.btnDebug.Visible = False
+        Me.flpActionTags.AutoSize = True
+        Me.flpActionTags.Location = New System.Drawing.Point(12, 44)
+        Me.flpActionTags.Name = "flpActionTags"
+        Me.flpActionTags.Size = New System.Drawing.Size(760, 28)
+        Me.flpActionTags.TabIndex = 7
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 461)
-        Me.Controls.Add(Me.btnDebug)
+        Me.Controls.Add(Me.flpActionTags)
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.tcActionBreakdown)
@@ -219,6 +216,7 @@ Partial Class Form1
         Me.tpReactions.ResumeLayout(False)
         Me.tpOther.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -232,9 +230,9 @@ Partial Class Form1
     Friend WithEvents tpOther As TabPage
     Friend WithEvents btnClear As Button
     Friend WithEvents btnDelete As Button
-    Friend WithEvents btnDebug As Button
     Friend WithEvents flpActions As FlowLayoutPanel
     Friend WithEvents flpBonus As FlowLayoutPanel
     Friend WithEvents flpReactions As FlowLayoutPanel
     Friend WithEvents flpOther As FlowLayoutPanel
+    Friend WithEvents flpActionTags As FlowLayoutPanel
 End Class

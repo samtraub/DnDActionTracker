@@ -1,9 +1,10 @@
 ﻿Public Class Form1
+    Private actionTags As List(Of String)
+    Private actionItemList As List(Of ActionItem)
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-#If DEBUG Then
-        btnDebug.Visible = True
-#End If
         cmbCharacter.Items.AddRange(GetCharacterList)
+        _currentTagPanelHeight = flpActionTags.Height
+        actionItemList = New List(Of ActionItem)
     End Sub
 
     Protected Overrides Sub WndProc(ByRef m As Message)
@@ -56,6 +57,8 @@
 
             Dim newAction As New Action(name, description, actionType, tagList)
             AddAction(newAction)
+
+            AddFilterButtons()
         End If
     End Sub
 
@@ -64,16 +67,7 @@
             Dim charName As String = cmbCharacter.Text
             If Not charName.Equals("") Then
                 Dim actionList As New List(Of Action)
-                For Each control As ActionItem In flpActions.Controls
-                    actionList.Add(control.ActionData)
-                Next
-                For Each control As ActionItem In flpBonus.Controls
-                    actionList.Add(control.ActionData)
-                Next
-                For Each control As ActionItem In flpReactions.Controls
-                    actionList.Add(control.ActionData)
-                Next
-                For Each control As ActionItem In flpOther.Controls
+                For Each control As ActionItem In actionItemList
                     actionList.Add(control.ActionData)
                 Next
 
@@ -124,11 +118,95 @@
             For Each action As Action In character.Actions
                 AddAction(action)
             Next
+
+            AddFilterButtons()
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
     End Sub
+
+    Private Sub FilterButtonClicked(sender As Object, e As EventArgs)
+        FilterActions()
+    End Sub
+
+    Private Sub FilterActions()
+        Dim showList As New List(Of String)
+        Dim hideList As New List(Of String)
+
+        For Each tagButton As FilterButton In flpActionTags.Controls
+            Select Case tagButton.State
+                Case FilterButton.FilterState.Show
+                    showList.Add(tagButton.Text)
+                Case FilterButton.FilterState.Hide
+                    hideList.Add(tagButton.Text)
+            End Select
+        Next
+
+        If showList.Count > 0 OrElse hideList.Count > 0 Then
+            For Each item As ActionItem In actionItemList
+                Dim inHideList As Boolean = False
+                Dim inShowList As Boolean = False
+                For Each tag As String In item.ActionData.Tags
+                    If hideList.Contains(tag) Then
+                        inHideList = True
+                    ElseIf showList.Contains(tag) Then
+                        inShowList = True
+                    End If
+                Next
+
+                If inHideList Then
+                    item.Visible = False
+                ElseIf inShowList Then
+                    item.Visible = True
+                Else
+                    item.Visible = False
+                End If
+            Next
+        Else
+            For Each item As ActionItem In actionItemList
+                item.Visible = True
+            Next
+        End If
+    End Sub
 #End Region
+
+    Private _currentTagPanelHeight As Integer = 0
+    Private Sub AddFilterButtons()
+        Dim tagList As New List(Of String)
+        flpActionTags.Controls.Clear()
+
+        For Each item As ActionItem In actionItemList
+            For Each tag As String In item.ActionData.Tags
+                If Not tagList.Contains(tag) Then
+                    tagList.Add(tag)
+                End If
+            Next
+        Next
+
+        For Each tag As String In tagList
+            Dim filterButton As New FilterButton With {
+                .Name = "fbt" & tag,
+                .AutoSize = True,
+                .AutoSizeMode = AutoSizeMode.GrowOnly,
+                .Text = tag
+            }
+            AddHandler filterButton.Click, AddressOf FilterButtonClicked
+
+            flpActionTags.Controls.Add(filterButton)
+        Next
+    End Sub
+
+    Private Sub flpActionTags_SizeChanged(sender As Object, e As EventArgs) Handles flpActionTags.SizeChanged
+        Try
+            If flpActionTags.Height <> _currentTagPanelHeight Then
+                Dim dif As Integer = flpActionTags.Height - _currentTagPanelHeight
+                Me.Height += dif
+                _currentTagPanelHeight = flpActionTags.Height
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.ToString)
+        End Try
+    End Sub
 
     Private Sub AddAction(ByVal newAction As Action)
         Dim newActionItem As New ActionItem(newAction) With {
@@ -151,14 +229,18 @@
             Case Else
                 flpOther.Controls.Add(newActionItem)
         End Select
+
+        actionItemList.Add(newActionItem)
     End Sub
 
     Private Sub RemoveActionItem(ByVal item As ActionItem)
         Dim parentList As Control = item.Parent
         parentList.Controls.Remove(item)
+        actionItemList.Remove(item)
     End Sub
 
     Private Sub ClearActions()
+        actionItemList.Clear()
         flpActions.Controls.Clear()
         flpBonus.Controls.Clear()
         flpReactions.Controls.Clear()
@@ -254,12 +336,6 @@
 
             itemControl.Location = New Point(newX, newY)
         End If
-    End Sub
-#End Region
-
-#Region "Debug"
-    Private Sub btnDebug_Click(sender As Object, e As EventArgs) Handles btnDebug.Click
-        AddAction(New Action("Bonus", "", Action.ActionType.Bonus))
     End Sub
 #End Region
 End Class
