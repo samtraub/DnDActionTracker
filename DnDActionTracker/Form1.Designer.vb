@@ -178,6 +178,8 @@ Partial Class Form1
         '
         'flpActionTags
         '
+        Me.flpActionTags.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpActionTags.AutoSize = True
         Me.flpActionTags.Location = New System.Drawing.Point(12, 44)
         Me.flpActionTags.Name = "flpActionTags"

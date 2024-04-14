@@ -172,7 +172,9 @@
             If flpActionTags.Height <> _currentTagPanelHeight Then
                 Dim dif As Integer = flpActionTags.Height - _currentTagPanelHeight
                 Me.Height += dif
+                Me.MinimumSize = New Size(Me.MinimumSize.Width, Me.MinimumSize.Height + dif)
                 _currentTagPanelHeight = flpActionTags.Height
+                tcActionBreakdown.Location = New Point(tcActionBreakdown.Location.X, flpActionTags.Location.Y + _currentTagPanelHeight + 6)
             End If
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
